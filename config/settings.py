@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    "phonenumber_field",
+
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +131,9 @@ STATIC_ROOT = BASE_DIR / 'public' / 'static'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
+
+PHONE_NUMBER_DEFAULT_REGION = 'RU'
+PHONE_NUMBER_LENGTH = 12
+INVITE_CODE_LENGTH = 6
