@@ -14,7 +14,11 @@
 2. Зайдите в корень проекта командой `cd <путь-до-дирректории-проекта>`
 
 
-3. Создайте `.env` из файла `.env.dist` командой `cp .env.dist .env`.
+3. Создайте `.env` из файла `.env.dist` командой `cp .env.dist .env`. 
+Для генерации ключа Django вызовите команду 
+    ```bash
+    echo "SECRET_KEY=$(python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')" >> .env
+    ```
 
 
 4. Запустите приложение с помощью `docker-compose` (используется утилита `make`)
