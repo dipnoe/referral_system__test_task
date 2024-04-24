@@ -17,7 +17,7 @@
 3. Создайте `.env` из файла `.env.dist` командой `cp .env.dist .env`. 
 Для генерации ключа Django вызовите команду 
     ```bash
-    echo "SECRET_KEY=$(python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')" >> .env.dist
+    echo "SECRET_KEY=$(python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')" >> .env
     ```
 
 
