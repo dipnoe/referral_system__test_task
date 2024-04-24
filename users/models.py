@@ -5,20 +5,20 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from config.settings import (PHONE_NUMBER_DEFAULT_REGION,
                              PHONE_NUMBER_LENGTH,
-                             INVITE_CODE_LENGTH)
+                             INVITE_CODE_LENGTH,
+                             AUTH_CODE_LENGTH)
 
 
 class User(AbstractUser):
     username = None
     email = None
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone_number = PhoneNumberField(region=PHONE_NUMBER_DEFAULT_REGION, max_length=PHONE_NUMBER_LENGTH,
-                                    validators=[MinLengthValidator(PHONE_NUMBER_LENGTH)], unique=True)
-    invite_code = models.CharField(max_length=INVITE_CODE_LENGTH,
-                                   validators=[MinLengthValidator(INVITE_CODE_LENGTH)], unique=True)
-    invited_code = models.CharField(max_length=INVITE_CODE_LENGTH,
-                                    validators=[MinLengthValidator(INVITE_CODE_LENGTH)], null=True, blank=True)
+    auth_code = models.CharField(max_length=AUTH_CODE_LENGTH, unique=True, blank=True, null=True,
+                                 validators=[MinLengthValidator(AUTH_CODE_LENGTH)])
+    phone_number = PhoneNumberField(region=PHONE_NUMBER_DEFAULT_REGION, unique=True)
+    personal_invite_code = models.CharField(max_length=INVITE_CODE_LENGTH, null=True, blank=True,
+                                            validators=[MinLengthValidator(INVITE_CODE_LENGTH)])
+    invited_by_code = models.CharField(max_length=INVITE_CODE_LENGTH, null=True, blank=True,
+                                       validators=[MinLengthValidator(INVITE_CODE_LENGTH)])
 
     class Meta:
         verbose_name = 'Пользователь'
